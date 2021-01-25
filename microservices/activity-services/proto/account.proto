@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package demo.account;
+
+option go_package = ".;pb";
+
+import "google/api/annotations.proto";
+
+message AccountRequest{
+  int64 id = 1;
+}
+
+message AccountResponse {
+  string name = 1;
+}
+
+service AccountService {
+  rpc GetAccount(AccountRequest) returns (AccountResponse) {
+    option (google.api.http) = {
+      post: "/*"
+      body: "*"
+    };
+  }
+}

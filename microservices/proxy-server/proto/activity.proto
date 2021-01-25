@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package demo.account;
+
+option go_package = ".;pb";
+
+import "google/api/annotations.proto";
+
+message ActivityRequest {
+  int64 id = 1;
+}
+
+message ActivityResponse {
+  repeated string activities = 1;
+}
+
+service ActivityService {
+  rpc GetActivities(ActivityRequest) returns (ActivityResponse) {
+    option (google.api.http) = {
+      post: "/*"
+      body: "*"
+    };
+  }
+}

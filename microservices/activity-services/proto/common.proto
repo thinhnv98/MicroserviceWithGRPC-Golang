@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package demo.account;
+
+option go_package = ".;pb";
+
+import "google/api/annotations.proto";
+
+message CommonRequest {
+  int64 id = 1;
+}
+
+message CommonResponse {
+  string name = 1;
+  repeated string activities = 2;
+}
+
+service CommonService {
+  rpc GetInformation(CommonRequest) returns (CommonResponse) {
+    option (google.api.http) = {
+      post: "/common/report"
+      body: "*"
+    };
+  }
+}
