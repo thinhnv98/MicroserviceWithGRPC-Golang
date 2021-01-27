@@ -2,6 +2,7 @@ package controller
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 
@@ -14,6 +15,7 @@ type Common struct {
 }
 
 func (_self Common) GetInformation(ctx context.Context, req *pb.CommonRequest) (*pb.CommonResponse, error) {
+	fmt.Printf("receive a Common request with ID: %v", req.GetId())
 	//Implement Call microservice
 	accountConn, err := grpc.DialContext(ctx, os.Getenv("ACCOUNT_HOST")+":"+os.Getenv("ACCOUNT_PORT"), grpc.WithInsecure())
 	if err != nil {
